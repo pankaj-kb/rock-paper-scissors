@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import "./App.css";
 
@@ -23,36 +23,30 @@ const App = () => {
     setSelectedOption(options[nextIndex]);
   };
 
-  const handleComChoise = () => {
-    setComputerChoice(options[Math.floor(Math.random() * options.length)]);
-    handleWinner();
-  };
-
-  const handleWinner = () => {
-    if (
-      (selectedOption == options[0] && computerChoice == options[2]) ||
-      (selectedOption == options[1] && computerChoice == options[0]) ||
-      (selectedOption == options[2] && computerChoice == options[1])
-    ) {
-      setWinner("You");
-    }
-    if (
-      (selectedOption == options[0] && computerChoice == options[1]) ||
-      (selectedOption == options[1] && computerChoice == options[2]) ||
-      (selectedOption == options[2] && computerChoice == options[0])
-    ) {
-      setWinner("Computer");
-    }
-    if (selectedOption == computerChoice) {
-      setWinner("Draw");
+  const handleComChoice = () => {
+    const computerChoiceIndex = Math.floor(Math.random() * options.length);
+    const computerChoice = options[computerChoiceIndex];
+    setComputerChoice(computerChoice);
+    const result = determineWinner(selectedOption, computerChoice);
+    setWinner(result);
+    if (result === "You !!") {
+      console.log("you won")
     }
   };
 
-  // useEffect({handleWinner},[]);
-
-  // const comSelect = () => {
-  //   const comChoise = Math.random(options[])
-  // }
+  const determineWinner = (userChoice, computerChoice) => {
+    if (userChoice === computerChoice) {
+      return "It's a Draw";
+    } else if (
+      (userChoice === "rock" && computerChoice === "scissors") ||
+      (userChoice === "paper" && computerChoice === "rock") ||
+      (userChoice === "scissors" && computerChoice === "paper")
+    ) {
+      return "You !!";
+    } else {
+      return "Bot Wins";
+    }
+  };
 
   return (
     <div>
@@ -63,7 +57,7 @@ const App = () => {
         <button onClick={handleNext}>Next</button>
       </div>
       <div>
-        <button onClick={handleComChoise}>Play</button>
+        <button onClick={handleComChoice}>Play</button>
         <h2>Computer Choice: {computerChoice}</h2>
       </div>
       <div>
