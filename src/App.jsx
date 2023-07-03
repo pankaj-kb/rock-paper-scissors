@@ -11,6 +11,10 @@ const App = () => {
 
   const [winner, setWinner] = useState("");
 
+  const [userScore, setUserScore] = useState(0);
+
+  const [comScore, setComScore] = useState(0);
+
   const handlePrevious = () => {
     const currentIndex = options.indexOf(selectedOption);
     const previousIndex = (currentIndex - 1 + options.length) % options.length;
@@ -30,7 +34,9 @@ const App = () => {
     const result = determineWinner(selectedOption, computerChoice);
     setWinner(result);
     if (result === "You !!") {
-      console.log("you won")
+      setUserScore(userScore + 1);
+    } else if (result === "Bot Wins") {
+      setComScore(comScore + 1);
     }
   };
 
@@ -62,6 +68,10 @@ const App = () => {
       </div>
       <div>
         <h1>Winner is : {winner}</h1>
+      </div>
+      <div>
+        <h1>Your Score : {userScore}</h1>
+        <h1>Bot Score : {comScore}</h1>
       </div>
     </div>
   );
