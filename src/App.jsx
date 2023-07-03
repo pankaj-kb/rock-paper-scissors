@@ -54,6 +54,13 @@ const App = () => {
     }
   };
 
+  const resetScore = () => {
+    setComScore(0);
+    setUserScore(0);
+    setComputerChoice("");
+    setSelectedOption(options[0]);
+  };
+
   return (
     <div>
       <h1>Rock Paper Scissors</h1>
@@ -72,6 +79,7 @@ const App = () => {
       <div>
         <h1>Your Score : {userScore}</h1>
         <h1>Bot Score : {comScore}</h1>
+        <button onClick={resetScore}>Reset Game</button>
       </div>
     </div>
   );
