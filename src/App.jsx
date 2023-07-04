@@ -71,7 +71,7 @@ const App = () => {
       </div>
       <div>
         <button onClick={handleComChoice}>Play</button>
-        <h2>Computer Choice: {computerChoice}</h2>
+        <h2>Bot Choice: {computerChoice}</h2>
       </div>
       <div>
         <h1>Winner is : {winner}</h1>
