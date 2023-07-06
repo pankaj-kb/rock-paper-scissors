@@ -3,8 +3,6 @@ import React, { useState, useContext } from "react";
 import "./App.css";
 import PlayerContext from "./context/PlayerContext";
 
-import PlayerForm from "./Pages/PlayerForm";
-
 const App = () => {
   const options = ["rock", "paper", "scissors"];
 
