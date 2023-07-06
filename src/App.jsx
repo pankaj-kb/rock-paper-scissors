@@ -64,26 +64,26 @@ const App = () => {
   };
 
   return (
+    <div>
+      <h1>Rock Paper Scissors</h1>
       <div>
-        <h1>Rock Paper Scissors</h1>
-        <div>
-          <button onClick={handlePrevious}>Previous</button>
-          <h1>{selectedOption}</h1>
-          <button onClick={handleNext}>Next</button>
-        </div>
-        <div>
-          <button onClick={handleComChoice}>Play</button>
-          <h2>Bot Choice: {computerChoice}</h2>
-        </div>
-        <div>
-          <h1>Winner is : {winner}</h1>
-        </div>
-        <div>
-          <h1>Your Score : {userScore}</h1>
-          <h1>Bot Score : {comScore}</h1>
-          <button onClick={resetScore}>Reset Game</button>
-        </div>
+        <button onClick={handlePrevious}>Previous</button>
+        <h1>{selectedOption}</h1>
+        <button onClick={handleNext}>Next</button>
       </div>
+      <div>
+        <button onClick={handleComChoice}>Play</button>
+        <h2>Bot Choice: {computerChoice}</h2>
+      </div>
+      <div>
+        <h1>Winner is : {winner}</h1>
+      </div>
+      <div>
+        <h1>{playerName} Score : {userScore}</h1>
+        <h1>Bot Score : {comScore}</h1>
+        <button onClick={resetScore}>Reset Game</button>
+      </div>
+    </div>
   );
 };
 
