@@ -1,16 +1,22 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./App.css";
 import PlayerContext from "./context/PlayerContext";
 import rockImg from "./assets/rock.png";
 import scissorsImg from "./assets/scissors.png";
 import paperImg from "./assets/paper.png";
 
-const App = () => {
-  const options = ["rock", "paper", "scissors"];
+const options = ["rock", "paper", "scissors"];
 
+const iconMap = {
+  rock: rockImg,
+  paper: paperImg,
+  scissors: scissorsImg,
+};
+
+const App = () => {
   const [selectedOption, setSelectedOption] = useState(options[0]);
-  const [computerChoice, setComputerChoice] = useState(rockImg);
+  const [computerChoice, setComputerChoice] = useState(options[0]);
 
   const [winner, setWinner] = useState("");
 
@@ -28,35 +34,28 @@ const App = () => {
     const currentIndex = options.indexOf(selectedOption);
     const previousIndex = (currentIndex - 1 + options.length) % options.length;
     setSelectedOption(options[previousIndex]);
-    handleUserIconChange();
   };
 
   const handleNext = () => {
     const currentIndex = options.indexOf(selectedOption);
     const nextIndex = (currentIndex + 1) % options.length;
     setSelectedOption(options[nextIndex]);
-    handleUserIconChange();
   };
 
   const handleUserIconChange = () => {
-    if (selectedOption === options[0]) {
-      setIcon(rockImg);
-    }
-    if (selectedOption === options[1]) {
-      setIcon(paperImg);
-    }
-    if (selectedOption === options[2]) {
-      setIcon(scissorsImg);
-    }
+    setIcon(iconMap[selectedOption]);
   };
 
   const handleComChoice = () => {
     const computerChoiceIndex = Math.floor(Math.random() * options.length);
     const computerChoice = options[computerChoiceIndex];
-    handleBotIconChange()
-    setComputerChoice(computerChoice);
     const result = determineWinner(selectedOption, computerChoice);
+
+    setComputerChoice(computerChoice);
     setWinner(result);
+
+    // handleBotIconChange();
+
     if (result === playerName) {
       setUserScore(userScore + 1);
     } else if (result === "Bot Wins") {
@@ -65,15 +64,7 @@ const App = () => {
   };
 
   const handleBotIconChange = () => {
-    if (computerChoice === options[0]) {
-      setBotIcon(rockImg);
-    }
-    if (computerChoice === options[1]) {
-      setBotIcon(paperImg);
-    }
-    if (computerChoice === options[2]) {
-      setBotIcon(scissorsImg);
-    }
+    setBotIcon(iconMap[computerChoice]);
   };
 
   const determineWinner = (userChoice, computerChoice) => {
@@ -93,9 +84,17 @@ const App = () => {
   const resetScore = () => {
     setComScore(0);
     setUserScore(0);
-    setComputerChoice("");
+    setComputerChoice(rockImg);
     setSelectedOption(options[0]);
   };
+
+  useEffect(() => {
+    handleUserIconChange();
+  }, [selectedOption]);
+
+  useEffect(() => {
+    handleBotIconChange();
+  }, [computerChoice]);
 
   return (
     <div className="game">
