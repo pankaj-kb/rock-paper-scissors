@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
-
+import React, { useState, useContext } from "react";
 import "./App.css";
+import PlayerContext from "./context/PlayerContext";
+
+import PlayerForm from "./Pages/PlayerForm";
 
 const App = () => {
   const options = ["rock", "paper", "scissors"];
@@ -14,6 +16,8 @@ const App = () => {
   const [userScore, setUserScore] = useState(0);
 
   const [comScore, setComScore] = useState(0);
+
+  const { playerName } = useContext(PlayerContext);
 
   const handlePrevious = () => {
     const currentIndex = options.indexOf(selectedOption);
@@ -33,7 +37,7 @@ const App = () => {
     setComputerChoice(computerChoice);
     const result = determineWinner(selectedOption, computerChoice);
     setWinner(result);
-    if (result === "You !!") {
+    if (result === playerName) {
       setUserScore(userScore + 1);
     } else if (result === "Bot Wins") {
       setComScore(comScore + 1);
@@ -48,7 +52,7 @@ const App = () => {
       (userChoice === "paper" && computerChoice === "rock") ||
       (userChoice === "scissors" && computerChoice === "paper")
     ) {
-      return "You !!";
+      return playerName;
     } else {
       return "Bot Wins";
     }
@@ -62,26 +66,26 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Rock Paper Scissors</h1>
       <div>
-        <button onClick={handlePrevious}>Previous</button>
-        <span>{selectedOption}</span>
-        <button onClick={handleNext}>Next</button>
+        <h1>Rock Paper Scissors</h1>
+        <div>
+          <button onClick={handlePrevious}>Previous</button>
+          <h1>{selectedOption}</h1>
+          <button onClick={handleNext}>Next</button>
+        </div>
+        <div>
+          <button onClick={handleComChoice}>Play</button>
+          <h2>Bot Choice: {computerChoice}</h2>
+        </div>
+        <div>
+          <h1>Winner is : {winner}</h1>
+        </div>
+        <div>
+          <h1>Your Score : {userScore}</h1>
+          <h1>Bot Score : {comScore}</h1>
+          <button onClick={resetScore}>Reset Game</button>
+        </div>
       </div>
-      <div>
-        <button onClick={handleComChoice}>Play</button>
-        <h2>Bot Choice: {computerChoice}</h2>
-      </div>
-      <div>
-        <h1>Winner is : {winner}</h1>
-      </div>
-      <div>
-        <h1>Your Score : {userScore}</h1>
-        <h1>Bot Score : {comScore}</h1>
-        <button onClick={resetScore}>Reset Game</button>
-      </div>
-    </div>
   );
 };
 
