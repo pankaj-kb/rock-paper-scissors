@@ -1,3 +1,12 @@
+/* Player Form */
+
+* {
+    box-sizing: border-box;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
 .player-form-container {
     display: flex;
     justify-content: center;
@@ -9,17 +18,17 @@
     left: 0;
     background-color: rgba(48, 180, 203, 0.9);
     z-index: 9999;
-  }
-  
-  .player-name-form {
+}
+
+.player-name-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 5vh;
-  }
+}
 
-  .player-name-input {
+.player-name-input {
     height: 50px;
     width: 50vw;
     text-align: center;
@@ -28,20 +37,20 @@
     font-size: 20px;
     border: none;
     border-radius: 17px;
-  }
+}
 
-  .player-name-input::placeholder {
+.player-name-input::placeholder {
     text-align: center;
     color: black;
     font-weight: 600;
     font-size: 20px;
-  }
+}
 
-  .player-name-input:focus {
+.player-name-input:focus {
     outline: none;
-  }
+}
 
-  .player-name-form button {
+.player-name-form button {
     text-align: center;
     color: black;
     font-weight: 600;
@@ -52,8 +61,11 @@
     cursor: pointer;
     height: 6vh;
     width: 10vw;
-  }
+}
 
-  /* .player-name-form button:hover {
+/* .player-name-form button:hover {
     background-color: red;
   } */
+
+
+/* Game */

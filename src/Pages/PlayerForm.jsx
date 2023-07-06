@@ -24,7 +24,7 @@ const PlayerForm = () => {
           onChange={(e) => setName(e.target.value)}
           placeholder="Player 1"
         />
-        <button type="submit">/Game</button>
+        <button type="submit">Play</button>
       </form>
     </div>
   );
