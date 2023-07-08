@@ -16,7 +16,7 @@ const iconMap = {
 
 const App = () => {
   const [selectedOption, setSelectedOption] = useState(options[0]);
-  const [computerChoice, setComputerChoice] = useState(options[0]);
+  const [computerChoice, setComputerChoice] = useState(options[1]);
 
   const [winner, setWinner] = useState("");
 
@@ -58,7 +58,7 @@ const App = () => {
 
     if (result === playerName) {
       setUserScore(userScore + 1);
-    } else if (result === "Bot Wins") {
+    } else if (result === "Bot") {
       setComScore(comScore + 1);
     }
   };
@@ -77,7 +77,7 @@ const App = () => {
     ) {
       return playerName;
     } else {
-      return "Bot Wins";
+      return "Bot";
     }
   };
 
@@ -99,29 +99,35 @@ const App = () => {
   return (
     <div className="game">
       <h1 className="game-heading">Rock Paper Scissors</h1>
-      <div>
-        <img src={icon} alt="" />
-        <button onClick={handlePrevious}>Previous</button>
-        <button onClick={handleNext}>Next</button>
+      <div className="selection">
+        <div className="selection-user">
+          <img src={icon} alt={selectedOption} />
+          <div>
+            <button onClick={handlePrevious}>Previous</button>
+            <button onClick={handleNext}>Next</button>
+          </div>
+        </div>
+        <div className="selection-bot">
+          <img src={botIcon} alt={computerChoice} />
+        </div>
       </div>
-      <div>
-        <img src={botIcon} alt="" />
-      </div>
-      <div>
+      <div className="play-button">
         <button onClick={handleComChoice}>Play</button>
       </div>
       <div>
         <h1>Winner : {winner}</h1>
       </div>
       <div>
-        <div>
-          <h1>Score</h1>
-          <h1>
+        <div className="score-section">
+          {/* <h1 className="score-title">Score</h1> */}
+          <h1 className="user-score">
             {playerName}: {userScore}
           </h1>
-          <h1>Bot: {comScore}</h1>
+          <h1 className="bot-score">Bot: {comScore}</h1>
         </div>
+        <div className="reset-game">
         <button onClick={resetScore}>Reset Game</button>
+        </div>
       </div>
     </div>
   );
